@@ -25,7 +25,25 @@ function calculateResults(e){
     totalPayment.value = (monthly * calculatedPayments).toFixed(2)
     totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2)
   } else {
+    showError('Please check your numbers')
     console.log("meh. the math is wrong.")
   }
 
+}
+
+function showError(error){
+  const errorDiv = document.createElement('div')
+  errorDiv.className = 'alert alert-danger'
+  errorDiv.appendChild(document.createTextNode(error))
+
+  const card = document.querySelector('.card')
+  const heading = document.querySelector('.heading')
+  card.insertBefore(errorDiv, heading)
+
+  // Clear error after 3 seconds
+  setTimeout(clearError, 2000);
+}
+
+function clearError(){
+  document.querySelector('.alert').remove()
 }
