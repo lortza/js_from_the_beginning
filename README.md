@@ -31,4 +31,9 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 ### Book List
 
 - add books to list
+- removes books from list
+- shows alert messages when:
+  - books are added
+  - books are removed
+  - validation errors
 - written in js and again in ES6

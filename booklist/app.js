@@ -69,7 +69,7 @@ document.getElementById('book-form').addEventListener('submit', function(e){
 
   // Instantiate objects
   const book = new Book(titleText, authorText, isbnText),
-        ui = new UI(titleText, authorText, isbnText)
+        ui = new UI
 
   // Validation
   if(titleText === '' || authorText === '' ||  isbnText === ''){
