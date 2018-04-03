@@ -1,4 +1,4 @@
-// Book Constuctor
+// Book Constuctor ///////////////////
 
 function Book(title, author, isbn){
   this.title = title
@@ -6,13 +6,16 @@ function Book(title, author, isbn){
   this.isbn = isbn
 }
 
-// UI Constructor
+
+
+
+// UI Constructor ///////////////////
 function UI(){}
 
 UI.prototype.addBookToList = function(book){
-  const list = document.querySelector('#book-list')
+  const list = document.querySelector('#book-list'),
         row = document.createElement('tr')
-
+console.log(book);
   row.innerHTML = `
     <td>${book.title}</td>
     <td>${book.author}</td>
@@ -22,26 +25,67 @@ UI.prototype.addBookToList = function(book){
   list.appendChild(row)
 }
 
+UI.prototype.deleteBook = function(target){
+  if(target.className === 'delete'){
+    target.parentElement.parentElement.remove()
+  }
+}
+
 UI.prototype.clearFields = function(){
   document.querySelector('#title').value = ''
   document.querySelector('#author').value = ''
   document.querySelector('#isbn').value = ''
 }
 
-// Event Listeners
+UI.prototype.showAlert = function(msg, class_name){
+  const div = document.createElement('div'),
+        formContainer = document.querySelector('.container'),
+        form = document.querySelector('#book-form')
+
+  div.className = `alert ${class_name}`
+  div.appendChild(document.createTextNode(msg))
+  formContainer.insertBefore(div, form)
+
+  setTimeout(function() {
+    document.querySelector('.alert').remove()
+    }, 2000);
+}
+
+
+
+
+
+
+
+// Event Listeners ///////////////////
+// Listener to Add Book
 document.getElementById('book-form').addEventListener('submit', function(e){
   e.preventDefault()
 
   // Get form values
-  const UItitle = document.querySelector('#title').value,
-        UIauthor = document.querySelector('#author').value,
-        UIisbn = document.querySelector('#isbn').value
+  const titleText = document.querySelector('#title').value,
+        authorText = document.querySelector('#author').value,
+        isbnText = document.querySelector('#isbn').value
 
   // Instantiate objects
-  const book = new Book(title, author, isbn),
-        ui = new UI(title, author, isbn)
+  const book = new Book(titleText, authorText, isbnText),
+        ui = new UI(titleText, authorText, isbnText)
 
-  // Add book to list
-  ui.addBookToList(book)
-  ui.clearFields()
+  // Validation
+  if(titleText === '' || authorText === '' ||  isbnText === ''){
+    ui.showAlert('Please fill in all fields', 'error')
+  } else {
+    // Add book to list
+    ui.addBookToList(book)
+    ui.showAlert('Book added!', 'success')
+    ui.clearFields()
+  }
+})
+
+// Listener to Delete book
+document.getElementById('book-list').addEventListener('click', function(e){
+  const ui = new UI()
+  ui.deleteBook(e.target)
+  ui.showAlert('Book removed', 'success')
+  e.preventDefault()
 })
