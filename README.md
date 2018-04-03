@@ -27,3 +27,8 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - notify player of win/loss
 - prompt player to guess higher or lower
 - give option to play again
+
+### Book List
+
+- add books to list
+- written in js and again in ES6
