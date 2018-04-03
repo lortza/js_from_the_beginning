@@ -77,13 +77,16 @@ function addTask(e) {
 
 function storeTask(task){
   let tasks;
+  // If the hash key 'tasks' is not present, make the tasks var eq empty array.
+  // Otherwise, populate with with the existing info
   if(localStorage.getItem('tasks') === null){
     tasks = []
   } else {
     tasks = JSON.parse(localStorage.getItem('tasks'))
   }
-
+  // Push the current task into the array
   tasks.push(task)
+  // Set the local storage to the newly-updated array
   localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
