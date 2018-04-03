@@ -1,9 +1,17 @@
 // Listen for submit
-document.getElementById('loan-form').addEventListener('submit', calculateResults)
+document.getElementById('loan-form').addEventListener('submit', function(e){
 
-function calculateResults(e){
-  // Prevent the submit button from submitting
   e.preventDefault()
+
+  // Hide the results panel
+  document.querySelector('#results').style.display = 'none'
+  // Display the spinner
+  document.querySelector('#loading').style.display = 'block'
+  // Run the calculation after a 1.5 sec delay to give the spinner time
+  setTimeout(calculateResults, 1500)
+})
+
+function calculateResults(){
 
   // Set up UI Vars
   const amount = document.querySelector('#amount')
@@ -20,7 +28,10 @@ function calculateResults(e){
   // Compute monthly payments
   const x = Math.pow(1 + calculatedInterest, calculatedPayments)
   const monthly = (principal * x * calculatedInterest)/(x-1)
+  document.querySelector('#loading').style.display = 'none'
+
   if(isFinite(monthly)){
+    document.querySelector('#results').style.display = 'block'
     monthlyPayment.value = monthly.toFixed(2)
     totalPayment.value = (monthly * calculatedPayments).toFixed(2)
     totalInterest.value = ((monthly * calculatedPayments)-principal).toFixed(2)
