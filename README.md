@@ -47,4 +47,10 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - sample file using an XHR request
 - install [chrome web server extension](https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en) to run
 
+### Chuck Norris Jokes
+
+- sample xhr request using ajax and json
+- uses chuck norris joke api
+- run by opening index.html in the browser
+
 
