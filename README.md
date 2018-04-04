@@ -53,4 +53,10 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - uses chuck norris joke api
 - run by opening index.html in the browser
 
+### Callbacks vs Promises
+
+- 2 js files that do the same thing but using callbacks or promises
+
+
+
 
