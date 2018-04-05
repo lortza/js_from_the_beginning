@@ -21,4 +21,10 @@ class UI {
     this.dewpoint.textContent = `Dewpoint: ${weather.dewpoint_string}`
     this.wind.textContent = `Wind: ${weather.wind_string}`
   }
+
+  closeModal(city, state){
+  $("#locModal").modal('hide')
+    city.value = ''
+    state.value = ''
+  }
 }
