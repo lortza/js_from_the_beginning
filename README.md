@@ -57,6 +57,9 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 
 - 2 js files that do the same thing but using callbacks or promises
 
+### Async Await vs Promises
 
+- 2 js files that do the same thing but using async await or promises
+- open the console log on https://jsonplaceholder.typicode.com/users to run the code in the browser and avoid CORS errors
 
 
