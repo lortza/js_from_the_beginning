@@ -1,4 +1,5 @@
 class UI {
+  // locate all of the crucial DOM elements
   constructor(){
     this.location = document.querySelector('#w-location')
     this.desc = document.querySelector('#w-desc')
@@ -11,6 +12,7 @@ class UI {
     this.wind = document.querySelector('#w-wind')
   }
 
+  // populate the DOM elements
   paint(weather){
     this.location.textContent = weather.display_location.full
     this.desc.textContent = weather.weather
@@ -22,6 +24,7 @@ class UI {
     this.wind.textContent = `Wind: ${weather.wind_string}`
   }
 
+  // close the modal and clear the fields
   closeModal(city, state){
   $("#locModal").modal('hide')
     city.value = ''
