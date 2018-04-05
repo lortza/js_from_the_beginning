@@ -22,14 +22,4 @@ class Github {
     }
   }
 
-  async getRepos(user){
-    const reposResponse = await fetch(`https://api.github.com/users/${user}/repos?client_id=${this.client_id}&client_secret=${this.client_secret}`)
-
-    return {
-      repos: reposData
-    }
-  }
-
-
-
 }
