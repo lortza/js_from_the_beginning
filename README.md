@@ -62,4 +62,11 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - 2 js files that do the same thing but using async await or promises
 - open the console log on https://jsonplaceholder.typicode.com/users to run the code in the browser and avoid CORS errors
 
+### Github Finder
+
+- search for user profiles via the dom
+- use github api
+- display user profile stats
+- display latest repos
+- run by opening index.html in the browser
 
