@@ -70,3 +70,8 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - display latest repos
 - run by opening index.html in the browser
 
+### Weather Reporter
+
+- stores user city in browser localStorage
+- uses WeatherUnderground api
+- paints all UI elements at once
