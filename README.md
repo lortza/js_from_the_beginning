@@ -49,23 +49,23 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 
 ### Chuck Norris Jokes
 
-- sample xhr request using ajax and json
+- sample XHR request using AJAX and JSON
 - uses chuck norris joke api
 - run by opening index.html in the browser
 
 ### Callbacks vs Promises
 
-- 2 js files that do the same thing but using callbacks or promises
+- 2 JS files that do the same thing but using callbacks or promises
 
 ### Async Await vs Promises
 
-- 2 js files that do the same thing but using async await or promises
+- 2 JS files that do the same thing but using async await or promises
 - open the console log on https://jsonplaceholder.typicode.com/users to run the code in the browser and avoid CORS errors
 
 ### Github Finder
 
-- search for user profiles via the dom
-- use github api
+- search for user profiles via the DOM
+- use Github api
 - display user profile stats
 - display latest repos
 - run by opening index.html in the browser
@@ -85,5 +85,3 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 
 - Sample form using regular expressions for field validation
 - run by opening index.html in the browser
-
-
