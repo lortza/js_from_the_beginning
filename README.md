@@ -86,3 +86,8 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 
 - Sample form using regular expressions for field validation
 - run by opening index.html in the browser
+
+### Profile Scroller
+
+- iterates through a set of data (array of obj literals) using JS iterators
+- run by opening index.html in the browser
