@@ -29,7 +29,7 @@ class UI {
   }
 
   // close the modal and clear the fields
-  closeModal(city, state){
+  closeModal(){
   $("#locModal").modal('hide')
     this.city.value = ''
     this.state.value = ''

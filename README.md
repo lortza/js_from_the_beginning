@@ -75,6 +75,7 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - stores user city in browser localStorage
 - uses WeatherUnderground api
 - paints all UI elements at once
+- version 1 done with udemy class, version 2 done with mentor
 - run by opening index.html in the browser
 
 ### Regular Expressions
