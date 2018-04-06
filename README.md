@@ -75,3 +75,15 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - stores user city in browser localStorage
 - uses WeatherUnderground api
 - paints all UI elements at once
+- run by opening index.html in the browser
+
+### Regular Expressions
+
+- A reference list of commonly-used regular expressions
+
+### User Form
+
+- Sample form using regular expressions for field validation
+- run by opening index.html in the browser
+
+
