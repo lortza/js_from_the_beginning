@@ -7,13 +7,13 @@ class Github {
     this.repos_sort = 'created: asc'
   }
 
-  async getUser(user){
+  async getUser(username){
     // Get user profile data
-    const profileResponse = await fetch(`${this.baseUrl}/${user}?client_id=${this.client_id}&client_secret=${this.client_secret}`)
+    const profileResponse = await fetch(`${this.baseUrl}/${username}?client_id=${this.client_id}&client_secret=${this.client_secret}`)
     const profileData = await profileResponse.json()
 
     // Get user repo data from different api endpoint
-    const reposResponse = await fetch(`${this.baseUrl}/${user}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}&client_id=${this.client_id}&client_secret=${this.client_secret}`)
+    const reposResponse = await fetch(`${this.baseUrl}/${username}/repos?per_page=${this.repos_count}&sort=${this.repos_sort}&client_id=${this.client_id}&client_secret=${this.client_secret}`)
     const reposData = await reposResponse.json()
 
     return {

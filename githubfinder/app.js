@@ -1,9 +1,9 @@
 const github = new Github
 const ui = new UI
 
-const searchUser = document.getElementById('searchUser')
+const searchField = document.getElementById('search-field')
 
-searchUser.addEventListener('keyup', (e) => {
+searchField.addEventListener('keyup', (e) => {
   const inputText = e.target.value
 
   if(inputText !== ''){
