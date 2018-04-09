@@ -90,6 +90,10 @@ const UIController = (function(){
       `
       document.querySelector(UISelectors.itemList).insertAdjacentElement('beforeend', li)
     },
+    clearInput: function(){
+      document.querySelector(UISelectors.itemNameInput).value = ''
+      document.querySelector(UISelectors.itemCaloriesInput).value = ''
+    },
     getSelectors: function(){ return UISelectors }
   }
 
@@ -106,13 +110,14 @@ const App = (function(ItemController, UIController){
   const itemAddSubmit = function(e){
     // Get form input
     const input = UIController.getItemInput()
-
-    // Check for name and caolire input
+    // Check for name and calorie input
     if(input.name !== '' && input.calories !== ''){
       // Add food to list
       const newItem = ItemController.addItem(input.name.value, input.calories.value)
       // Add item to UI
       UIController.addListItem(newItem)
+      // Clear form fields
+      UIController.clearInput()
     }
 
 
