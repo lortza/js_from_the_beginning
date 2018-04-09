@@ -67,6 +67,16 @@ const ItemController = (function(){
       })
       return found
     },
+    deleteItemFromData: function(itemId){
+      let ids = data.items.map(function(item){
+        return item.id
+      })
+      let index = ids.indexOf(itemId)
+      data.items.splice(index, 1)
+    },
+    deleteAllItemsFromData: function(){
+      data.items = []
+    },
     setCurrentItem: function(item){
       data.currentItem = item
     },
@@ -95,6 +105,7 @@ const UIController = (function(){
     addBtn: '.add-btn',
     updateBtn: '.update-btn',
     deleteBtn: '.delete-btn',
+    clearBtn: '.clear-btn',
     backBtn: '.back-btn',
     itemNameInput: '#item-name',
     itemCaloriesInput: '#item-calories',
@@ -157,6 +168,16 @@ const UIController = (function(){
         }
       })
     },
+    deleteListItem: function(itemId){
+      document.querySelector(`#item-${itemId}`).remove()
+    },
+    removeAllListItems: function(){
+      let listItems = document.querySelectorAll(UISelectors.listItems)
+      listItems = Array.from(listItems)
+      listItems.forEach(function(li){
+        li.remove()
+      })
+    },
     hideList: function(){
       document.querySelector(UISelectors.itemList).style.display = 'none'
     },
@@ -200,6 +221,9 @@ const App = (function(ItemController, UIController){
     document.querySelector(UISelectors.addBtn).addEventListener('click', itemAddSubmit)
     document.querySelector(UISelectors.itemList).addEventListener('click', itemEditClick)
     document.querySelector(UISelectors.updateBtn).addEventListener('click', itemUpdateSubmit)
+    document.querySelector(UISelectors.backBtn).addEventListener('click', UIController.clearEditState)
+    document.querySelector(UISelectors.deleteBtn).addEventListener('click', itemDeleteSubmit)
+    document.querySelector(UISelectors.clearBtn).addEventListener('click', clearAllItemsClick)
   }
   // Add item submit
   const itemAddSubmit = function(e){
@@ -243,6 +267,32 @@ const App = (function(ItemController, UIController){
     // Update the display
     UIController.updateItemDisplay(updatedItem)
     UIController.clearEditState()
+    // Update the total calories
+    const totalCalories = ItemController.getTotalCalories()
+    UIController.showTotalCalories(totalCalories)
+    e.preventDefault()
+  }
+
+  const itemDeleteSubmit = function(e){
+    // Get current item
+    const currentItem = ItemController.getCurrentItem()
+    // Delete item from data
+    ItemController.deleteItemFromData(currentItem.id)
+    // Delete item from view
+    UIController.deleteListItem(currentItem.id)
+    UIController.clearEditState()
+    // Update the total calories
+    const totalCalories = ItemController.getTotalCalories()
+    UIController.showTotalCalories(totalCalories)
+    e.preventDefault()
+  }
+
+  const clearAllItemsClick = function(e){
+    // Delete all items from database
+    ItemController.deleteAllItemsFromData()
+    // Delete items from view
+    UIController.removeAllListItems()
+    UIController.hideList()
     // Update the total calories
     const totalCalories = ItemController.getTotalCalories()
     UIController.showTotalCalories(totalCalories)
