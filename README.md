@@ -91,3 +91,10 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 
 - iterates through a set of data (array of obj literals) using JS iterators
 - run by opening index.html in the browser
+
+### Tracalorie Food calorie counter
+
+- uses module pattern to build food List
+- all crud actions for food items
+- food items stored in browser local storage
+- run by opening index.html in the browser
