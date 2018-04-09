@@ -1,9 +1,55 @@
 // Storage Controller
+const StorageController = (function() {
+
+  // Public methods
+  return {
+    storeItem: function(item){
+      let items = []
+      if(localStorage.getItem('items') === null){
+        items.push(item)
+        localStorage.setItem('items', JSON.stringify(items))
+      } else {
+        items = JSON.parse(localStorage.getItem('items'))
+        items.push(item)
+        localStorage.setItem('items', JSON.stringify(items))
+      }
+    },
+    getItemsFromStorage: function(){
+      let items;
+      if(localStorage.getItem('items') === null){
+        items = []
+      } else {
+        items = JSON.parse(localStorage.getItem('items'))
+      }
+      return items
+    },
+    updateItemStorage: function(updatedItem){
+      let items = JSON.parse(localStorage.getItem('items'))
+      items.forEach(function(item, index){
+        if(updatedItem.id === item.id){
+          items.splice(index, 1, updatedItem)
+        }
+      })
+      localStorage.setItem('items', JSON.stringify(items))
+    },
+    deleteItemFromStorage: function(currentId){
+      let items = JSON.parse(localStorage.getItem('items'))
+      items.forEach(function(item, index){
+        if(currentId === item.id){
+          items.splice(index, 1)
+        }
+      })
+      localStorage.setItem('items', JSON.stringify(items))
+    },
+    clearItemsFromStorage: function(){
+      localStorage.removeItem('items')
+    }
+  }// end return
+}()); // end StorageController
 
 
 // Item Controller
 const ItemController = (function(){
-  console.log('ItemController')
   const Item = function(id, name, calories){
     this.id = id
     this.name = name
@@ -11,13 +57,11 @@ const ItemController = (function(){
   }
 
   const data = {
-    items: [
-      {id: 0, name: "Steak dinner", calories: 1200},
-      {id: 1, name: "Kraft dinner", calories: 500},
-      {id: 2, name: "Pizza", calories: 200},
-      // {id: 3, name: "Cookie", calories: 400},
-      // {id: 4, name: "Eggs", calories: 300}
-    ],
+    // items: [
+    //   {id: 0, name: "Steak dinner", calories: 1200},
+    //   {id: 1, name: "Kraft dinner", calories: 500}
+    // ],
+    items: StorageController.getItemsFromStorage(),
     currentItem: null,
     totalCalories: 0
   }
@@ -208,7 +252,7 @@ const UIController = (function(){
 
 
 // App Controller
-const App = (function(ItemController, UIController){
+const App = (function(ItemController, UIController, StorageController){
   const loadEventListeners = function(){
     const UISelectors = UIController.getSelectors()
     // Disable submition upon Enter key
@@ -236,6 +280,8 @@ const App = (function(ItemController, UIController){
       const newItem = ItemController.addItem(input.name.value, calories)
       // Add item to UI
       UIController.addListItem(newItem)
+      // Add to local Storage
+      StorageController.storeItem(newItem)
       // Clear form fields
       UIController.clearInput()
       // Get total calories
@@ -264,6 +310,8 @@ const App = (function(ItemController, UIController){
     let input = UIController.getItemInput()
     let calories = ItemController.processCalorieInput(input.calories.value)
     const updatedItem = ItemController.updateItemData(input.name.value, calories)
+    // Update the localStorage
+    StorageController.updateItemStorage(updatedItem)
     // Update the display
     UIController.updateItemDisplay(updatedItem)
     UIController.clearEditState()
@@ -278,6 +326,8 @@ const App = (function(ItemController, UIController){
     const currentItem = ItemController.getCurrentItem()
     // Delete item from data
     ItemController.deleteItemFromData(currentItem.id)
+    // Delete item from localStorage
+    StorageController.deleteItemFromStorage(currentItem.id)
     // Delete item from view
     UIController.deleteListItem(currentItem.id)
     UIController.clearEditState()
@@ -290,6 +340,8 @@ const App = (function(ItemController, UIController){
   const clearAllItemsClick = function(e){
     // Delete all items from database
     ItemController.deleteAllItemsFromData()
+    // Remove from local storage
+    StorageController.clearItemsFromStorage()
     // Delete items from view
     UIController.removeAllListItems()
     UIController.hideList()
@@ -324,6 +376,6 @@ const App = (function(ItemController, UIController){
       loadEventListeners()
     }
   }
-})(ItemController, UIController)
+})(ItemController, UIController, StorageController)
 
 App.init()
