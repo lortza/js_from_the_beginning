@@ -97,4 +97,5 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - uses module pattern to build food List
 - all crud actions for food items
 - food items stored in browser local storage
+- calculates total calories
 - run by opening index.html in the browser
