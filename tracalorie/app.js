@@ -12,11 +12,11 @@ const ItemController = (function(){
 
   const data = {
     items: [
-      {id: 0, name: "Steak dinner", calories: 1200},
-      {id: 1, name: "Kraft dinner", calories: 500},
-      {id: 2, name: "Pizza", calories: 200},
-      {id: 3, name: "Cookie", calories: 400},
-      {id: 4, name: "Eggs", calories: 300}
+      // {id: 0, name: "Steak dinner", calories: 1200},
+      // {id: 1, name: "Kraft dinner", calories: 500},
+      // {id: 2, name: "Pizza", calories: 200},
+      // {id: 3, name: "Cookie", calories: 400},
+      // {id: 4, name: "Eggs", calories: 300}
     ],
     currentItem: null,
     totalCalories: 0
@@ -78,6 +78,8 @@ const UIController = (function(){
       }
     },
     addListItem: function(item){
+      // Unhide the empty list placeholder
+      document.querySelector(UISelectors.itemList).style.display = 'block'
       // create li element
       const li = document.createElement('li')
       li.className = 'collection-item'
@@ -93,6 +95,9 @@ const UIController = (function(){
     clearInput: function(){
       document.querySelector(UISelectors.itemNameInput).value = ''
       document.querySelector(UISelectors.itemCaloriesInput).value = ''
+    },
+    hideList: function(){
+      document.querySelector(UISelectors.itemList).style.display = 'none'
     },
     getSelectors: function(){ return UISelectors }
   }
@@ -130,8 +135,14 @@ const App = (function(ItemController, UIController){
       console.log('Initializing app...')
       // Fetch items from data structure
       const items = ItemController.getItems()
-      // Populate item list upon init
-      UIController.populateItemsList(items)
+
+      // Check if any items
+      if(items.length === 0){
+        UIController.hideList()
+      } else {
+        // Populate item list upon init
+        UIController.populateItemsList(items)
+      }
       // Load event listeners
       loadEventListeners()
     }
