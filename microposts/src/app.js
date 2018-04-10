@@ -7,6 +7,9 @@ document.addEventListener('DOMContentLoaded', getPosts)
 // Listen for add post
 document.querySelector('.post-submit').addEventListener('click', submitPost)
 
+// Listen for delete post
+document.querySelector('#posts').addEventListener('click', deletePost)
+
 // Get Posts
 function getPosts(){
   http.get(http.apiUrl)
@@ -30,4 +33,16 @@ function submitPost(){
       getPosts()
     })
     .catch(err => console.log(err))
+}
+
+// Deletes posts
+function deletePost(e){
+  if(e.target.classList.contains('fa-remove')){
+    let postId = e.target.parentNode.getAttribute('data-id')
+    http.delete(`${http.apiUrl}/${postId}`)
+      .then(data => {
+        ui.removePostFromView(postId)
+      })
+      .catch(err => console.log(err))
+  }
 }

@@ -11,7 +11,7 @@ class UI {
     let output =''
     posts.forEach(function(post){
       output += `
-      <div class="card mb-3">
+      <div id="post-${post.id}" class="card mb-3">
         <div class="card-body">
           <h4 class="card-title">${post.title}</h4>
           <p class="card-text">${post.body}</p>
@@ -55,7 +55,9 @@ class UI {
     this.bodyInput.value = ''
   }
 
-
+  removePostFromView(postId){
+    document.querySelector(`#post-${postId}`).remove()
+  }
 
 
 }// end UI class
