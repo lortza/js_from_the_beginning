@@ -28,21 +28,34 @@ function getPosts(){
 function submitPost(){
   // Capture the new post content
   let data = {
+    id: document.querySelector('#id').value,
     title: document.querySelector('#title').value,
     body: document.querySelector('#body').value
   }
+  // Validate input
   if(data.title === '' || data.body === ''){
     ui.showAlert('Fill out the form, yo.', 'alert')
   } else {
+    if(isNewPost(data.id)){
+      // Insert the post data into the datastore
+      http.post(http.apiUrl, data)
+      .then(data => {
+        ui.showAlert('The post has been saved', 'alert')
+        ui.changeFormState('add')
+        getPosts()
+      })
+      .catch(err => console.log(err))
+    } else { // it's an update
     // Insert the post data into the datastore
-    http.post(http.apiUrl, data)
-    .then(data => {
-      ui.showAlert('The post has been saved', 'notice')
-      ui.clearFields()
-      getPosts()
-    })
-    .catch(err => console.log(err))
-  }
+      http.put(`${http.apiUrl}/${data.id}`, data)
+      .then(data => {
+        ui.showAlert('The post has been updated', 'alert')
+        ui.changeFormState('add')
+        getPosts()
+      })
+      .catch(err => console.log(err))
+    }
+  }// end validation
 }
 
 // Deletes posts
@@ -75,4 +88,8 @@ function cancelEdit(e){
     ui.changeFormState('add')
   }
   e.preventDefault()
+}
+
+function isNewPost(id){
+  return (id === '')
 }
