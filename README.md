@@ -99,3 +99,13 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 - food items stored in browser local storage
 - calculates total calories
 - run by opening index.html in the browser
+
+### Microposts
+
+- uses babel to compile (from [this webpack](https://github.com/bradtraversy/babel_webpack_starter))
+- uses [json-server](https://github.com/typicode/json-server) to generate an api
+- run by:
+  - server tab `npm start`
+  - another server tab `npm run json:server`
+  - nav to localhost:8080 for the app
+  - consume api via localhost:3000
