@@ -9,6 +9,9 @@
  **/
 
  class EasyHTTP {
+   constructor() {
+     this.apiUrl = 'http://localhost:3000/posts'
+   }
   // Make an HTTP GET Request
   async get(url) {
     const response = await fetch(url);

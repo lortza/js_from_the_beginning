@@ -1,1 +1,7 @@
 .delete {color: red;}
+
+.alert {
+  background-color: lightgreen;
+  color: green;
+  border-radius: 8px;
+}

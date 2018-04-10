@@ -3,7 +3,9 @@
 This repo has several small projects in it that I built during the Udemy [JS from the Beginning](https://www.udemy.com/modern-javascript-from-the-beginning/) class.
 
 
-## Projects Include
+## Projects
+
+The projects below are listed in order of complexity
 
 ### Task List
 
@@ -102,6 +104,7 @@ This repo has several small projects in it that I built during the Udemy [JS fro
 
 ### Microposts
 
+- full crud app with data using only JS
 - uses babel to compile (from [this webpack](https://github.com/bradtraversy/babel_webpack_starter))
 - uses [json-server](https://github.com/typicode/json-server) to generate an api
 - run by:

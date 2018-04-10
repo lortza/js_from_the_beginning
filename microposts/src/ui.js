@@ -27,6 +27,37 @@ class UI {
     })
     this.post.innerHTML = output
   }
-}
+
+  showAlert(message, klass){
+    this.clearAlert()
+    const div = document.createElement('div')
+    div.className = klass
+    div.appendChild(document.createTextNode(message))
+    // Get parent
+    const container = document.querySelector('.postsContainer')
+    const form = document.querySelector('.card-form')
+    container.insertBefore(div, form)
+    // Show the alert for 1.5 seconds
+    setTimeout(()=> {
+      this.clearAlert()
+    }, 1500)
+  }
+
+  clearAlert(){
+    let alert = document.querySelector('.alert')
+    if(alert){
+      alert.remove()
+    }
+  }
+
+  clearFields(){
+    this.titleInput.value = ''
+    this.bodyInput.value = ''
+  }
+
+
+
+
+}// end UI class
 
 export const ui = new UI()
